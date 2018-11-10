@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "name": "react-hooks-boilerplate",
+  "scripts": {
+    "bootstrap": "lerna bootstrap"
+  },
+  "devDependencies": {
+    "lerna": "^3.4.3"
+  }
+}
