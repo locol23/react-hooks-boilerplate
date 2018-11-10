@@ -1,5 +1,4 @@
 import React, { useReducer } from 'react'
-import styled from 'styled-components'
 
 const INCREMENT = 'increment'
 const DECREMENT = 'decrement'
@@ -32,34 +31,18 @@ export const App = () => {
   })
 
   return (
-    <Layout>
+    <div>
       <h1>React Hooks (useReducer)</h1>
-      <Text>{state.count}</Text>
+      <div>{state.count}</div>
       <div>
-        <Button onClick={() => dispatch({ type: INCREMENT })}>increment</Button>
-        <Button onClick={() => dispatch({ type: DECREMENT })}>decrement</Button>
-        <Button
+        <button onClick={() => dispatch({ type: INCREMENT })}>increment</button>
+        <button onClick={() => dispatch({ type: DECREMENT })}>decrement</button>
+        <button
           onClick={() => dispatch({ type: RESET, payload: defaultValue })}
         >
           reset
-        </Button>
+        </button>
       </div>
-    </Layout>
+    </div>
   )
 }
-
-const Layout = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: column;
-`
-
-const Text = styled.div`
-  font-size: 20px;
-  margin: 10px 0;
-`
-
-const Button = styled.button`
-  margin: 5px 5px;
-`

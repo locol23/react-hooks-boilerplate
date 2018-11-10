@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import styled from 'styled-components'
 
 export const App = () => {
   const [text, setText] = useState('')
@@ -18,30 +17,14 @@ export const App = () => {
   useEffect(() => setText('React Hooks'), [])
 
   return (
-    <Layout>
+    <div>
       <h1>{text}</h1>
-      <Text>{count}</Text>
+      <div>{count}</div>
       <div>
-        <Button onClick={increment}>increment</Button>
-        <Button onClick={decrement}>decrement</Button>
-        <Button onClick={reset}>reset</Button>
+        <button onClick={increment}>increment</button>
+        <button onClick={decrement}>decrement</button>
+        <button onClick={reset}>reset</button>
       </div>
-    </Layout>
+    </div>
   )
 }
-
-const Layout = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: column;
-`
-
-const Text = styled.div`
-  font-size: 20px;
-  margin: 10px 0;
-`
-
-const Button = styled.button`
-  margin: 5px 5px;
-`
