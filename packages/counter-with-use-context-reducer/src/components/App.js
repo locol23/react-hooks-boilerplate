@@ -1,54 +1,43 @@
-import React, { createContext, useReducer } from 'react'
+import React, { useReducer, useEffect, createContext } from 'react'
 
-import { Counter } from './Counter'
+import { useTextContext, useCounterContext } from '../hooks'
+import { rootReducer, RESET } from '../reducer'
 
 export const Context = createContext()
 
-export const UPDATE_TEXT = 'update-text'
-export const INCREMENT = 'increment'
-export const DECREMENT = 'decrement'
-export const RESET = 'reset'
-
-const initialState = {
-  text: '',
-  count: 0,
-}
-
-const defaultValue = 10
-
-const reducer = (state = initialState, action) => {
-  switch (action.type) {
-    case UPDATE_TEXT: {
-      return { ...state, text: action.payload }
-    }
-    case INCREMENT: {
-      return { ...state, count: state.count + 1 }
-    }
-    case DECREMENT: {
-      return { ...state, count: state.count - 1 }
-    }
-    case RESET: {
-      return { ...state, count: action.payload }
-    }
-    default: {
-      return state
-    }
-  }
-}
-
 const Provider = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialState, {
+  const [state, dispatch] = useReducer(rootReducer, undefined, {
     type: RESET,
-    payload: defaultValue,
+    payload: 0,
   })
   return (
     <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
   )
 }
 
+const Header = () => {
+  const [text, updateText] = useTextContext()
+  useEffect(() => updateText('React Hooks(useContext & useReducer)'), [])
+
+  return <h1>{text}</h1>
+}
+
+const Counter = () => {
+  const [count, increment, decrement, reset] = useCounterContext()
+  return (
+    <div>
+      <div>{count}</div>
+      <button onClick={increment}>increment</button>
+      <button onClick={decrement}>decrement</button>
+      <button onClick={() => reset(0)}>reset</button>
+    </div>
+  )
+}
+
 export const App = () => {
   return (
     <Provider>
+      <Header />
       <Counter />
     </Provider>
   )

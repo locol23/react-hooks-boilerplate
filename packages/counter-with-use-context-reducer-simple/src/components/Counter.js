@@ -12,7 +12,7 @@ export const Counter = () => {
     () =>
       dispatch({
         type: UPDATE_TEXT,
-        payload: 'React Hooks(useContext & useReducer)',
+        payload: 'React Hooks(useContext & useReducer)(simple)',
       }),
     []
   )
@@ -23,7 +23,7 @@ export const Counter = () => {
       <div>{count}</div>
       <button onClick={() => dispatch({ type: INCREMENT })}>increment</button>
       <button onClick={() => dispatch({ type: DECREMENT })}>decrement</button>
-      <button onClick={() => dispatch({ type: RESET, payload: 10 })}>
+      <button onClick={() => dispatch({ type: RESET, payload: 0 })}>
         reset
       </button>
     </div>
